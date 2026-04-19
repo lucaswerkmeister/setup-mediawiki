@@ -171,7 +171,7 @@ runs:
             eval=(php maintenance/eval.php)
         fi
 
-        "${eval[@]}" <<< 'echo "server=$wgServer\nscript-path=$wgScriptPath\narticle-path=$wgArticlePath\nindex-url=$wgServer" . wfScript() . "\napi-url=$wgServer" . wfScript( "api.php" ) . "\nrest-url=$wgServer" . wfScript( "rest.php" )' >> "$GITHUB_OUTPUT"
+        "${eval[@]}" <<< 'echo "server=$wgServer\nscript-path=$wgScriptPath\narticle-path=$wgArticlePath\nindex-url=$wgServer" . wfScript() . "\napi-url=$wgServer" . wfScript( "api" ) . "\nrest-url=$wgServer" . wfScript( "rest" )' >> "$GITHUB_OUTPUT"
         printf 'install-directory=%s\n' "$PWD" >> "$GITHUB_OUTPUT"
     - name: 'Start PHP web server'
       shell: 'bash'
