@@ -83,7 +83,7 @@ runs:
             if [[ ! $extension = */* ]]; then
                 extension="https://gerrit.wikimedia.org/r/mediawiki/extensions/$extension.git"
             fi
-            git -C w/extensions/ clone --depth=1 --branch="$INPUT_VERSION" --recurse-submodules -- "$extension"
+            git -c http.userAgent='setup-mediawiki (https://github.com/lucaswerkmeister/setup-mediawiki)' -C w/extensions/ clone --depth=1 --branch="$INPUT_VERSION" --recurse-submodules -- "$extension"
         done <<< "$INPUT_EXTENSIONS"
         while IFS= read -r skin; do
             skin=${skin%#*}
@@ -94,7 +94,7 @@ runs:
             if [[ ! $skin = */* ]]; then
                 skin="https://gerrit.wikimedia.org/r/mediawiki/skins/$skin.git"
             fi
-            git -C w/skins/ clone --depth=1 --branch="$INPUT_VERSION" --recurse-submodules -- "$skin"
+            git -c http.userAgent='setup-mediawiki (https://github.com/lucaswerkmeister/setup-mediawiki)' -C w/skins/ clone --depth=1 --branch="$INPUT_VERSION" --recurse-submodules -- "$skin"
         done <<< "$INPUT_SKINS"
     - name: 'Set up composer-merge-plugin'
       shell: 'bash'
